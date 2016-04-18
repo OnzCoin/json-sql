@@ -22,7 +22,7 @@ describe('Insert', function() {
 			}
 		});
 
-		expect(result.query).to.be.equal('insert into "users" ("name") values ($p1);');
+		expect(result.query).to.be.equal('insert into "users" ("name") values (${p1});');
 		expect(result.values).to.be.eql({p1: 'Max'});
 	});
 
@@ -46,7 +46,7 @@ describe('Insert', function() {
 
 		expect(result.query).to.be.equal(
 			'with "t_1" as (select * from "t_1") insert into "users" ' +
-			'("name", "age", "lastVisit", "active") values ($p1, 17, null, true);'
+			'("name", "age", "lastVisit", "active") values (${p1}, 17, null, true);'
 		);
 		expect(result.values).to.be.eql({p1: 'Max'});
 	});
@@ -66,7 +66,7 @@ describe('Insert', function() {
 
 		expect(result.query).to.be.equal(
 			'insert into "users" ("name", "age", "lastVisit", "active") ' +
-			'values ($p1, 17, null, true) returning "users".*;'
+			'values (${p1}, 17, null, true) returning "users".*;'
 		);
 		expect(result.values).to.be.eql({p1: 'Max'});
 	});

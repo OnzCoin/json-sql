@@ -460,7 +460,7 @@ describe('Select', function() {
 					}
 				});
 
-				expect(result.query).to.be.equal('select * from "users" where "name" = $p1;');
+				expect(result.query).to.be.equal('select * from "users" where "name" = ${p1};');
 				expect(result.values).to.be.eql({
 					p1: 'John'
 				});
@@ -474,7 +474,7 @@ describe('Select', function() {
 					}
 				});
 
-				expect(result.query).to.be.equal('select * from "users" where "name" = $p1;');
+				expect(result.query).to.be.equal('select * from "users" where "name" = ${p1};');
 				expect(result.values).to.be.eql({
 					p1: 'John'
 				});
@@ -488,7 +488,7 @@ describe('Select', function() {
 					}
 				});
 
-				expect(result.query).to.be.equal('select * from "users" where "name" != $p1;');
+				expect(result.query).to.be.equal('select * from "users" where "name" != ${p1};');
 				expect(result.values).to.be.eql({
 					p1: 'John'
 				});
@@ -502,7 +502,7 @@ describe('Select', function() {
 					}
 				});
 
-				expect(result.query).to.be.equal('select * from "users" where "name" > $p1;');
+				expect(result.query).to.be.equal('select * from "users" where "name" > ${p1};');
 				expect(result.values).to.be.eql({
 					p1: 'John'
 				});
@@ -516,7 +516,7 @@ describe('Select', function() {
 					}
 				});
 
-				expect(result.query).to.be.equal('select * from "users" where "name" < $p1;');
+				expect(result.query).to.be.equal('select * from "users" where "name" < ${p1};');
 				expect(result.values).to.be.eql({
 					p1: 'John'
 				});
@@ -530,7 +530,7 @@ describe('Select', function() {
 					}
 				});
 
-				expect(result.query).to.be.equal('select * from "users" where "name" >= $p1;');
+				expect(result.query).to.be.equal('select * from "users" where "name" >= ${p1};');
 				expect(result.values).to.be.eql({
 					p1: 'John'
 				});
@@ -544,7 +544,7 @@ describe('Select', function() {
 					}
 				});
 
-				expect(result.query).to.be.equal('select * from "users" where "name" <= $p1;');
+				expect(result.query).to.be.equal('select * from "users" where "name" <= ${p1};');
 				expect(result.values).to.be.eql({
 					p1: 'John'
 				});
@@ -582,7 +582,7 @@ describe('Select', function() {
 					}
 				});
 
-				expect(result.query).to.be.equal('select * from "users" where "name" like $p1;');
+				expect(result.query).to.be.equal('select * from "users" where "name" like ${p1};');
 				expect(result.values).to.be.eql({
 					p1: 'John%'
 				});
@@ -770,7 +770,7 @@ describe('Select', function() {
 					}
 				});
 
-				expect(result.query).to.be.equal('select * from "users" where "name" = $p1 and "age" = 12;');
+				expect(result.query).to.be.equal('select * from "users" where "name" = ${p1} and "age" = 12;');
 				expect(result.values).to.be.eql({
 					p1: 'John'
 				});
@@ -804,7 +804,7 @@ describe('Select', function() {
 					}
 				});
 
-				expect(result.query).to.be.equal('select * from "users" where "name" = $p1 and "age" = 12;');
+				expect(result.query).to.be.equal('select * from "users" where "name" = ${p1} and "age" = 12;');
 				expect(result.values).to.be.eql({
 					p1: 'John'
 				});
@@ -821,7 +821,7 @@ describe('Select', function() {
 					}
 				});
 
-				expect(result.query).to.be.equal('select * from "users" where "name" = $p1 and "age" = 12;');
+				expect(result.query).to.be.equal('select * from "users" where "name" = ${p1} and "age" = 12;');
 				expect(result.values).to.be.eql({
 					p1: 'John'
 				});
@@ -838,7 +838,7 @@ describe('Select', function() {
 					}
 				});
 
-				expect(result.query).to.be.equal('select * from "users" where "name" = $p1 or "age" = 12;');
+				expect(result.query).to.be.equal('select * from "users" where "name" = ${p1} or "age" = 12;');
 				expect(result.values).to.be.eql({
 					p1: 'John'
 				});
@@ -855,7 +855,7 @@ describe('Select', function() {
 					}
 				});
 
-				expect(result.query).to.be.equal('select * from "users" where "name" = $p1 or "age" = 12;');
+				expect(result.query).to.be.equal('select * from "users" where "name" = ${p1} or "age" = 12;');
 				expect(result.values).to.be.eql({
 					p1: 'John'
 				});
@@ -872,7 +872,7 @@ describe('Select', function() {
 					}
 				});
 
-				expect(result.query).to.be.equal('select * from "users" where not ("name" = $p1 and ' +
+				expect(result.query).to.be.equal('select * from "users" where not ("name" = ${p1} and ' +
 					'"age" = 12);');
 				expect(result.values).to.be.eql({
 					p1: 'John'
@@ -890,7 +890,7 @@ describe('Select', function() {
 					}
 				});
 
-				expect(result.query).to.be.equal('select * from "users" where not ("name" = $p1 and ' +
+				expect(result.query).to.be.equal('select * from "users" where not ("name" = ${p1} and ' +
 					'"age" = 12);');
 				expect(result.values).to.be.eql({
 					p1: 'John'
@@ -915,8 +915,8 @@ describe('Select', function() {
 
 				expect(result.query).to.be.equal(
 					'select * from "users" ' +
-						'where ("name" = $p1 or "age" = 12) and ' +
-						'("name" = $p2 or "age" = 14);'
+						'where ("name" = ${p1} or "age" = 12) and ' +
+						'("name" = ${p2} or "age" = 14);'
 				);
 				expect(result.values).to.be.eql({
 					p1: 'John',
@@ -944,8 +944,8 @@ describe('Select', function() {
 
 				expect(result.query).to.be.equal(
 					'select * from "users" ' +
-						'where ("name" = $p1 or "age" = 12) and ' +
-						'("name" = $p2 or "age" = 14);'
+						'where ("name" = ${p1} or "age" = 12) and ' +
+						'("name" = ${p2} or "age" = 14);'
 				);
 				expect(result.values).to.be.eql({
 					p1: 'John',
@@ -969,8 +969,8 @@ describe('Select', function() {
 
 				expect(result.query).to.be.equal(
 					'select * from "users" ' +
-						'where ("name" = $p1 and "age" = 12) or ' +
-						'("name" = $p2 and "age" = 14);'
+						'where ("name" = ${p1} and "age" = 12) or ' +
+						'("name" = ${p2} and "age" = 14);'
 				);
 				expect(result.values).to.be.eql({
 					p1: 'John',
@@ -998,8 +998,8 @@ describe('Select', function() {
 
 				expect(result.query).to.be.equal(
 					'select * from "users" ' +
-						'where ("name" = $p1 and "age" = 12) or ' +
-						'("name" = $p2 and "age" = 14);'
+						'where ("name" = ${p1} and "age" = 12) or ' +
+						'("name" = ${p2} and "age" = 14);'
 				);
 				expect(result.values).to.be.eql({
 					p1: 'John',
@@ -1021,8 +1021,8 @@ describe('Select', function() {
 
 				expect(result.query).to.be.equal(
 					'select * from "users" ' +
-						'where ("name" = $p1 and "age" = 12) and ' +
-						'("name" = $p2 and "age" = 14);');
+						'where ("name" = ${p1} and "age" = 12) and ' +
+						'("name" = ${p2} and "age" = 14);');
 				expect(result.values).to.be.eql({
 					p1: 'John',
 					p2: 'Mark'
@@ -1045,8 +1045,8 @@ describe('Select', function() {
 
 				expect(result.query).to.be.equal(
 					'select * from "users" ' +
-						'where ("name" = $p1 and "age" = 12) and ' +
-						'("name" = $p2 and "age" = 14);'
+						'where ("name" = ${p1} and "age" = 12) and ' +
+						'("name" = ${p2} and "age" = 14);'
 				);
 				expect(result.values).to.be.eql({
 					p1: 'John',
@@ -1074,8 +1074,8 @@ describe('Select', function() {
 
 				expect(result.query).to.be.equal(
 					'select * from "users" ' +
-						'where ("name" = $p1 and "age" = 12) and ' +
-						'("name" = $p2 and "age" = 14);'
+						'where ("name" = ${p1} and "age" = 12) and ' +
+						'("name" = ${p2} and "age" = 14);'
 				);
 				expect(result.values).to.be.eql({
 					p1: 'John',
@@ -1103,8 +1103,8 @@ describe('Select', function() {
 
 				expect(result.query).to.be.equal(
 					'select * from "users" ' +
-						'where ("name" = $p1 or "age" = 12) or ' +
-						'("name" = $p2 or "age" = 14);'
+						'where ("name" = ${p1} or "age" = 12) or ' +
+						'("name" = ${p2} or "age" = 14);'
 				);
 				expect(result.values).to.be.eql({
 					p1: 'John',

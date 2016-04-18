@@ -145,7 +145,7 @@ describe('Builder', function() {
 			condition: {name: 'John'}
 		});
 
-		expect(result.query).to.be.equal('select * from "users" where "name" = $1;');
+		expect(result.query).to.be.equal('select * from "users" where "name" = ${1};');
 		expect(result.values).to.be.eql(['John']);
 	});
 
@@ -159,7 +159,7 @@ describe('Builder', function() {
 			condition: {name: 'John'}
 		});
 
-		expect(result.query).to.be.equal('select * from "users" where "name" = @p1;');
+		expect(result.query).to.be.equal('select * from "users" where "name" = @{p1};');
 		expect(result.values).to.be.eql({p1: 'John'});
 	});
 
@@ -169,9 +169,9 @@ describe('Builder', function() {
 			condition: {name: 'John'}
 		});
 
-		expect(result.query).to.be.equal('select * from "users" where "name" = @p1;');
+		expect(result.query).to.be.equal('select * from "users" where "name" = @{p1};');
 		expect(result.values).to.be.eql({p1: 'John'});
-		expect(result.prefixValues()).to.be.eql({'@p1': 'John'});
+		expect(result.prefixValues()).to.be.eql({'@{p1}': 'John'});
 	});
 
 	it('should return array values with method `getValuesArray`', function() {
@@ -180,7 +180,7 @@ describe('Builder', function() {
 			condition: {name: 'John'}
 		});
 
-		expect(result.query).to.be.equal('select * from "users" where "name" = @p1;');
+		expect(result.query).to.be.equal('select * from "users" where "name" = @{p1};');
 		expect(result.values).to.be.eql({p1: 'John'});
 		expect(result.getValuesArray()).to.be.eql(['John']);
 	});
@@ -198,9 +198,9 @@ describe('Builder', function() {
 			condition: {name: 'John'}
 		});
 
-		expect(result.query).to.be.equal('select * from "users" where "name" = $1;');
+		expect(result.query).to.be.equal('select * from "users" where "name" = ${1};');
 		expect(result.values).to.be.eql(['John']);
-		expect(result.prefixValues()).to.be.eql({'$1': 'John'});
+		expect(result.prefixValues()).to.be.eql({'${1}': 'John'});
 		expect(result.getValuesObject()).to.be.eql({1: 'John'});
 	});
 
@@ -235,7 +235,7 @@ describe('Builder', function() {
 				values: {name: 'John'}
 			});
 
-			expect(result.query).to.be.equal('insert into users (name) values ($p1);');
+			expect(result.query).to.be.equal('insert into users (name) values (${p1});');
 		}
 	);
 
@@ -253,7 +253,7 @@ describe('Builder', function() {
 			}
 		});
 
-		expect(result.query).to.be.equal('insert into "users" ("name", "users"."age") values ($p1, 22);');
+		expect(result.query).to.be.equal('insert into "users" ("name", "users"."age") values (${p1}, 22);');
 	});
 
 	it('shouldn\'t split identifiers by dots inside quotes', function() {
@@ -299,6 +299,6 @@ describe('Builder', function() {
 			}
 		});
 
-		expect(result.query).to.be.equal('insert into "users" ("name", "users"."age") values ($p1, 22);');
+		expect(result.query).to.be.equal('insert into "users" ("name", "users"."age") values (${p1}, 22);');
 	});
 });

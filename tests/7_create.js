@@ -244,7 +244,7 @@ describe('Create', function () {
 			]
 		});
 
-		expect(result.query).to.be.equal('create table if not exists "users"("name" varchar(16) NOT NULL PRIMARY KEY,"age" int NOT NULL, FOREIGN KEY (name) REFERENCES person(id));');
+		expect(result.query).to.be.equal('create table if not exists "users"("name" varchar(16) NOT NULL PRIMARY KEY,"age" int NOT NULL, FOREIGN KEY ("name") REFERENCES person("id"));');
 	});
 
 	it("should allow few fields", function () {
@@ -274,6 +274,6 @@ describe('Create', function () {
 			]
 		});
 
-		expect(result.query).to.be.equal('create table if not exists "users"("name" varchar(16) NOT NULL PRIMARY KEY,"age" int NOT NULL, FOREIGN KEY (name) REFERENCES person(id));');
+		expect(result.query).to.be.equal('create table if not exists "users"("name" varchar(16) NOT NULL PRIMARY KEY,"age" int NOT NULL, FOREIGN KEY ("name") REFERENCES person("id"));');
 	});
 });

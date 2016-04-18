@@ -26,7 +26,7 @@ describe('Update', function() {
 				}
 			});
 
-			expect(result.query).to.be.equal('update "users" set "name" = $p1, "age" = 16, ' +
+			expect(result.query).to.be.equal('update "users" set "name" = ${p1}, "age" = 16, ' +
 				'"lastVisit" = null, "active" = false;');
 			expect(result.values).to.be.eql({p1: 'Max'});
 		});
@@ -42,7 +42,7 @@ describe('Update', function() {
 				}
 			});
 
-			expect(result.query).to.be.equal('update "users" set "name" = $p1;');
+			expect(result.query).to.be.equal('update "users" set "name" = ${p1};');
 			expect(result.values).to.be.eql({p1: 'Max'});
 		});
 

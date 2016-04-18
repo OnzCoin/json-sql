@@ -19,7 +19,7 @@ describe('PostgreSQL dialect', function() {
 
 			expect(result.query).to.be.equal(
 				'select "params"->\'a\'->>\'b\' from "test" ' +
-				'where "params"->>\'c\' like $1;'
+				'where "params"->>\'c\' like ${1};'
 			);
 		});
 
@@ -34,7 +34,7 @@ describe('PostgreSQL dialect', function() {
 			});
 
 			expect(result.query).to.be.equal(
-				'select * from "test" where "params"->\'a\' @> $1;'
+				'select * from "test" where "params"->\'a\' @> ${1};'
 			);
 			expect(result.values).to.be.eql(['{"b":1}']);
 		});
@@ -63,7 +63,7 @@ describe('PostgreSQL dialect', function() {
 				}
 			});
 
-			expect(result.query).to.be.equal('select * from "test" where "params" ? $1;');
+			expect(result.query).to.be.equal('select * from "test" where "params" ? ${1};');
 			expect(result.values).to.be.eql(['account']);
 		});
 
@@ -76,7 +76,7 @@ describe('PostgreSQL dialect', function() {
 			});
 
 			expect(result.query).to.be.equal(
-				'select * from "test" where "params" ?| array[$1, $2];'
+				'select * from "test" where "params" ?| array[${1}, ${2}];'
 			);
 			expect(result.values).to.be.eql(['a', 'b']);
 		});
@@ -90,7 +90,7 @@ describe('PostgreSQL dialect', function() {
 			});
 
 			expect(result.query).to.be.equal(
-				'select * from "test" where "params" ?& array[$1, $2];'
+				'select * from "test" where "params" ?& array[${1}, ${2}];'
 			);
 			expect(result.values).to.be.eql(['a', 'b']);
 		});
