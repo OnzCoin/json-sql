@@ -106,7 +106,7 @@ describe('PostgreSQL dialect', function() {
 			expect(result.query).to.be.equal(
 				'select * from "test" where upper("params") = upper(${1});'
 			);
-			expect(result.values).to.be.eql(['3498862814541110459L']);
+			expect(result.values).to.be.eql(['3498862814541110459l']);
 		});
 
 		it('should be ok with `$lower` conditional operator', function() {
@@ -120,7 +120,7 @@ describe('PostgreSQL dialect', function() {
 			expect(result.query).to.be.equal(
 				'select * from "test" where lower("params") = lower(${1});'
 			);
-			expect(result.values).to.be.eql(['3498862814541110459l']);
+			expect(result.values).to.be.eql(['3498862814541110459L']);
 		});
 	});
 });
