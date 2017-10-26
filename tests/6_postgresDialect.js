@@ -122,5 +122,19 @@ describe('PostgreSQL dialect', function() {
 			);
 			expect(result.values).to.be.eql(['3498862814541110459L']);
 		});
+
+		it('should be ok with `$decode` conditional operator', function() {
+			var result = jsonSql.build({
+				table: 'test',
+				condition: {
+					params: {$decode: ['params', '3498862814541110459L', 'hex']}
+				}
+			});
+
+			expect(result.query).to.be.equal(
+				'select * from "test" where "params" = decode(${1}, ${2});'
+			);
+			expect(result.values).to.be.eql(['3498862814541110459L', 'hex']);
+		});
 	});
 });
